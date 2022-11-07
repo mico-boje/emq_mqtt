@@ -19,10 +19,10 @@ services:
       - "8084:8084"
       - "8883:8883"
       - "18083:18083"
-    networks:
-      emqx-bridge:
-        aliases:
-        - node1.emqx.io
+    # networks:
+    #   emqx-bridge:
+    #     aliases:
+    #     - node1.emqx.io
 
   emqx2:
     image: emqx/emqx:5.0.9
@@ -36,10 +36,10 @@ services:
       interval: 5s
       timeout: 25s
       retries: 5
-    networks:
-      emqx-bridge:
-        aliases:
-        - node2.emqx.io
+    # networks:
+    #   emqx-bridge:
+    #     aliases:
+    #     - node2.emqx.io
 
 networks:
   emqx-bridge:

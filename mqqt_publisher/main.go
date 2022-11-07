@@ -50,7 +50,7 @@ func publish(client mqtt.Client, id string) {
 		text := fmt.Sprintf("Device: %s Message: %d", id, i)
 		token := client.Publish(topic_name, 0, false, text)
 		token.Wait()
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(5000 * time.Millisecond)
 	}
 
 }
