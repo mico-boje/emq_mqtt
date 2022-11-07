@@ -12,8 +12,10 @@ import (
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
+const topic_name = "topic1"
+
 func sub(client mqtt.Client, id string) {
-	topic := "topic1"
+	topic := topic_name
 	//topic := fmt.Sprintf("t%s", id)
 	//println("Subscribing to", topic)
 
@@ -46,7 +48,7 @@ func publish(client mqtt.Client, id string) {
 	num := 1000000
 	for i := 0; i < num; i++ {
 		text := fmt.Sprintf("Device: %s Message: %d", id, i)
-		token := client.Publish("testtopic1", 0, false, text)
+		token := client.Publish(topic_name, 0, false, text)
 		token.Wait()
 		time.Sleep(500 * time.Millisecond)
 	}
