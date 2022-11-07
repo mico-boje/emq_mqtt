@@ -13,7 +13,7 @@ import (
 )
 
 func sub(client mqtt.Client, id string) {
-	topic := "testtopic1"
+	topic := "topic1"
 	//topic := fmt.Sprintf("t%s", id)
 	//println("Subscribing to", topic)
 
@@ -48,7 +48,7 @@ func publish(client mqtt.Client, id string) {
 		text := fmt.Sprintf("Device: %s Message: %d", id, i)
 		token := client.Publish("testtopic1", 0, false, text)
 		token.Wait()
-		time.Sleep(50000 * time.Millisecond)
+		time.Sleep(500 * time.Millisecond)
 	}
 
 }
@@ -114,7 +114,7 @@ func establish_connection(connections *[]mqtt.Client, wg *sync.WaitGroup, id str
 func main() {
 	mqtt.ERROR = log.New(os.Stdout, "[ERROR] ", 0)
 	mqtt.CRITICAL = log.New(os.Stdout, "[CRIT] ", 0)
-	const num_connections = 999
+	const num_connections = 50
 	var connections []mqtt.Client
 	var ids []string
 	var wg sync.WaitGroup
@@ -125,7 +125,7 @@ func main() {
 		client_id := "D" + fmt.Sprintf("%d", i)
 		go establish_connection(&connections, &wg, client_id)
 		ids = append(ids, client_id)
-		// time.Sleep(5 * time.Millisecond)
+		time.Sleep(1 * time.Millisecond)
 	}
 
 	wg.Wait()

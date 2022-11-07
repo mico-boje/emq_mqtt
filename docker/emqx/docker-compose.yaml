@@ -2,7 +2,7 @@ version: '3'
 
 services:
   emqx1:
-    image: emqx/emqx:5.0.4
+    image: emqx/emqx:5.0.9
     container_name: emqx1
     environment:
     - "EMQX_NODE_NAME=emqx@node1.emqx.io"
@@ -14,7 +14,7 @@ services:
       timeout: 25s
       retries: 5
     ports:
-      - "1833:1883"
+      - "1883:1883"
       - "8083:8083"
       - "8084:8084"
       - "8883:8883"
@@ -25,7 +25,7 @@ services:
         - node1.emqx.io
 
   emqx2:
-    image: emqx/emqx:5.0.4
+    image: emqx/emqx:5.0.9
     container_name: emqx2
     environment:
     - "EMQX_NODE_NAME=emqx@node2.emqx.io"
